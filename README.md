@@ -1,7 +1,56 @@
 es-hack-1000
 ============
 
-short description
+Create an elasticsearch cluster in azure, host mongodb, get data from traackr, do something cool with maps.
+Scale up.
+
+##Setup servers
+-Create github repo
+-Go to azure portal and create some nods named cm-es-9200.cloudapp.net through cm-es-9204.cloudapp.net and make the node names be the same as the ports you're going to use
+-setup mongodb on the first node
+
+##Mongo DB
+-http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat-centos-or-fedora-linux/
+-Create a /etc/yum.repos.d/mongodb.repo file to hold the following configuration information for the MongoDB repository:
+
+<pre>
+[mongodb]
+name=MongoDB Repository
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+gpgcheck=0
+enabled=1
+</pre>
+
+Then "sudo su -"
+and then
+<pre>
+yum install mongo-10gen mongo-10gen-server
+</pre>
+
+<pre>
+mongo cluster-7-data-00.sl.hackreduce.net:28953/traackr
+</pre>
+<pre>
+&gt; db.posts.find()
+&gt; db.influencers.find()
+</pre>
+
+Install Mongo on windows. just download the 64 bit version, unpack the zip file and put mongo bin in your PATH.
+
+<pre>
+mvn package
+mvn assembly:assembly
+cluster-7-data-00.sl.hackreduce.net:28953
+
+cd target
+java -jar hackday*
+
+java -jar hackday-mongo-loader.jar -c posts -d traackr -m cluster-7-data-00.sl.hackreduce.net:28953
+
+cd java/mondo-data
+mvn package; mvn assembly:assembly; java -jar target/hackday-mongo-loader.jar -c influencers -d traackr -m cluster-7-data-00.sl.hackreduce.net:28953 -o 10
+
+</pre>
 
 ##Project Home
 

@@ -18,7 +18,7 @@ public class MongoDataLoader {
   private static String        _mongoHost         = "localhost:27017";
   private static String        _mongoUser         = null;
   private static String        _mongoPass         = null;
-  private static String        _mongoDb           = null;
+  private static String        _mongoDb           = null; //"traackr";
   private static String        _mongoCollection   = null;
   private static String        _fields            = null;
   private static String        _query             = null;
@@ -181,6 +181,7 @@ public class MongoDataLoader {
         }
 
         BasicDBObject record = (BasicDBObject) cursor.next();
+          System.out.println("-----------------");
         System.out.println(record);
         totalCount++;
 
